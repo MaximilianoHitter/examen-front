@@ -26,11 +26,16 @@ const columns = [
   { name: "Nombre", uid: "nombre" },
   { name: "Descripcion", uid: "descripcion" },
   { name: "Categoría", uid: "categoria" },
+  { name: "Actualizado", uid:"updated_at"},
+  { name: "Creado", uid:"created_at"},
   { name: "Acciones", uid: "acciones" },
 ];
 
 export default function TableCursos() {
   const [cursos, setCursos] = useState([]);
+  const [sortDescriptor, setSortDescriptor] = React.useState({});
+  const [filterValue, setFilterValue] = React.useState("");
+  const [statusFilter, setStatusFilter] = React.useState("all");
 
   const getCursos = async () => {
     const res = await axios.get("/api/curso");
@@ -40,6 +45,38 @@ export default function TableCursos() {
   useEffect(() => {
     getCursos();
   }, []);
+
+  const filteredItems = React.useMemo(() => {
+    let filteredUsers = [...cursos];
+
+    /* if (hasSearchFilter) {
+      filteredUsers = filteredUsers.filter((user) =>
+        user.name.toLowerCase().includes(filterValue.toLowerCase()),
+      );
+    } */
+    if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
+      filteredUsers = filteredUsers.filter((user) =>
+        Array.from(statusFilter).includes(user.status),
+      );
+    }
+
+    return filteredUsers;
+  }, [cursos, filterValue, statusFilter]);
+
+  const items = React.useMemo(() => {
+    
+    return filteredItems.slice();
+  }, [filteredItems]);
+
+  const sortedItems = React.useMemo(() => {
+    return [...items].sort((a, b) => {
+      const first = a[sortDescriptor.column];
+      const second = b[sortDescriptor.column];
+      const cmp = first < second ? -1 : first > second ? 1 : 0;
+
+      return sortDescriptor.direction === "descending" ? -cmp : cmp;
+    });
+  }, [sortDescriptor, items]);
 
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
@@ -64,6 +101,18 @@ export default function TableCursos() {
             <p className="text-bold text-sm capitalize text-center">{categoria.nombre}</p>
           </div>
         );
+        case "updated_at":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-sm capitalize text-center">{cellValue}</p>
+          </div>
+        );
+        case "created_at":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-sm capitalize text-center">{cellValue}</p>
+          </div>
+        );
       case "acciones":
         return (
           <div className="relative flex items-center justify-center gap-2">
@@ -76,7 +125,10 @@ export default function TableCursos() {
   }, []);
 
   return (
-    <Table aria-label="Example table with custom cells" className="w-full">
+    <Table aria-label="Example table with custom cells"
+     className="w-[1000px]"  
+     sortDescriptor={sortDescriptor}
+     onSortChange={setSortDescriptor}>
       <TableHeader columns={columns}>
         {(column) => (
           <TableColumn

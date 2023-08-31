@@ -3,15 +3,16 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import FormCreateCurso from "../components/FormCreateCurso";
 import TableCursos from "../components/TableCursos";
 import TableReporte from "../components/TableReporte";
+import Custom from "../components/custom";
 export default function Cursos() {
     return (
       <div className="flex justify-center mt-5">
         <div className="flex flex-col">
           <Tabs aria-label="Options">
-            <Tab key="table" title="Tabla"className="w-full">
+          <Tab key="filter" title="Cursos" className="">
               <Card>
                 <CardBody>
-                  <TableCursos/>
+                  <Custom/>
                 </CardBody>
               </Card>
             </Tab>
