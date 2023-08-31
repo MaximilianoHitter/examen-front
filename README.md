@@ -1,8 +1,12 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h1>Examen - Frontend</h1>
+<p>Herramientas utilizadas: VSCode, Vite, React, react-router-dom, Swiper, NextUI, axios.</p>
+<br>
+<h3>Para correr el proyecto es necesario tener instalado lo siguiente:</h3>
+<ul>
+    <li>Node js</li>
+</ul>
+<p>Teniendo el proyecto descargado se debe tener el endpoint de backend corriendo y se debe correr los siguientes comandos en la consola estando parado sobre el root del proyecto</p>
+<ul>
+    <li>npm install</li>
+    <li>npm run dev</li>
+</ul>
