@@ -1,5 +1,6 @@
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
+import ModalEditCategoria from "./ModalEditCategoria";
 import React, { useState, useEffect} from "react";
 import {
   Table,
@@ -32,7 +33,6 @@ export default function TableCategorias() {
   const getCategorias = async () => {
     const res = await axios.get("/api/categoria");
     setCategorias(res.data.data);
-    console.log(categorias)
   };
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function TableCategorias() {
       case "acciones":
         return (
           <div className="relative flex items-center justify-center gap-2">
-              <Button href={"/editar/"+categoriaId}>Editar</Button> 
+              <ModalEditCategoria categoria={user}/>
           </div>
         );
       default:

@@ -23,6 +23,7 @@ export default function FormCreatePersona() {
   const [edad, setEdad] = useState("");
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState('false');
+  const [cargando, setCargando] = useState('false');
 
   const changeNombre = (e)=>{
     setNombre(e.target.value);
@@ -40,16 +41,15 @@ export default function FormCreatePersona() {
     setEdad(e.target.value);
   }
 
-  const changeGenero = (e)=>{
-    console.log(e.target.value);
+  const changeGenero = (e)=>{;
     setGenero(e.target.value);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(nombre, apellido, dni, genero, edad);
     try {
         setErrors([]);
+        setCargando('true');
         const response = await axios.post('/api/persona', {nombre, apellido, dni, genero, edad}).then(function(response){
             setSuccess('true');
         });
@@ -58,6 +58,7 @@ export default function FormCreatePersona() {
             setErrors(e.response.data.errors);
         }
     }
+    setCargando('false');
   };
 
   return (
@@ -120,7 +121,7 @@ export default function FormCreatePersona() {
       </Select>
       {errors.genero && <Chip color="warning" variant="shadow">{errors.genero}</Chip>}
       <div className="flex gap-2 justify-end">
-        <Button fullWidth color="primary" type="submit">
+        <Button fullWidth color="primary" type="submit"  isDisabled={cargando === 'true'}>
           Crear
         </Button>
       </div>

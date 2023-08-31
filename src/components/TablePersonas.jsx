@@ -1,5 +1,6 @@
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
+import ModalEditPersona from "./ModalEditPersona";
 import React, { useState, useEffect} from "react";
 import {
   Table,
@@ -50,37 +51,37 @@ export default function TablePersonas() {
       case "nombre":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
+            <p className="text-bold text-sm capitalize text-center">{cellValue}</p>
           </div>
         );
       case "apellido":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
+            <p className="text-bold text-sm capitalize text-center">{cellValue}</p>
           </div>
         );
       case "dni":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
+            <p className="text-bold text-sm capitalize text-center">{cellValue}</p>
           </div>
         );
       case "genero":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
+            <p className="text-bold text-sm capitalize text-center">{cellValue}</p>
           </div>
         );
       case "edad":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
+            <p className="text-bold text-sm capitalize text-center">{cellValue}</p>
           </div>
         );
       case "acciones":
         return (
-          <div className="relative flex items-center gap-2">
-              <Button href={"/editar/"+personaId}>Editar</Button> 
+          <div className="relative flex items-center justify-center gap-2">
+              <ModalEditPersona persona={user}/>
           </div>
         );
       default:
@@ -94,7 +95,8 @@ export default function TablePersonas() {
         {(column) => (
           <TableColumn
             key={column.uid}
-            align={column.uid === "actions" ? "center" : "start"}
+            align={"center"}
+            className="text-center"
           >
             {column.name}
           </TableColumn>
@@ -104,7 +106,7 @@ export default function TablePersonas() {
           {(item) => (
             <TableRow key={item.id}>
               {(columnKey) => (
-                <TableCell>{renderCell(item, columnKey)}</TableCell>
+                <TableCell align="center">{renderCell(item, columnKey)}</TableCell>
               )}
             </TableRow>
           )}

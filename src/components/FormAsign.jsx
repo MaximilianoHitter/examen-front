@@ -54,14 +54,12 @@ export default function FormAsign() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(personaId, cursoId);
     try {
         setErrors([]);
         const response = await axios.post('/api/asign', {persona_id: personaId, curso_id: cursoId}).then(function(response){
             setSuccess('true');
         });
     } catch (e) {
-        console.log(e);
         if(e.response.status === 422){
             setErrors(e.response.data.errors);
         }

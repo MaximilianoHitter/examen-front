@@ -2,6 +2,7 @@ import React from "react";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import FormCreateCurso from "../components/FormCreateCurso";
 import TableCursos from "../components/TableCursos";
+import TableReporte from "../components/TableReporte";
 export default function Cursos() {
     return (
       <div className="flex justify-center mt-5">
@@ -21,11 +22,10 @@ export default function Cursos() {
                 </CardBody>
               </Card>
             </Tab>
-            <Tab key="inscribit" title="Inscribir" className="max-w-3xl">
+            <Tab key="reporte" title="Reporte" className="max-w-3xl">
               <Card>
                 <CardBody>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum.
+                  <TableReporte/>
                 </CardBody>
               </Card>
             </Tab>
