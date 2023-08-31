@@ -3,7 +3,7 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import FormCreateCurso from "../components/FormCreateCurso";
 import TableCursos from "../components/TableCursos";
 import TableReporte from "../components/TableReporte";
-import Custom from "../components/custom";
+import Custom from "../components/Custom";
 export default function Cursos() {
     return (
       <div className="flex justify-center mt-5">
