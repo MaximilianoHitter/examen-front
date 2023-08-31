@@ -8,7 +8,7 @@ import Categorias from "./pages/Categorias";
 function App() {
 
   return (
-    <div className="">
+    <div className="bg-background">
       <Routes>
       <Route element={<CustomNavBar/>}>
         <Route path="/" element={<Home/>}/>

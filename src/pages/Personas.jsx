@@ -1,6 +1,7 @@
 import TablePersonas from "../components/TablePersonas";
 import FormCreatePersona from "../components/FormCreatePersona";
 import FormAsign from "../components/FormAsign";
+import VerCursadas from "../components/VerCursadas";
 import React from "react";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 export default function Personas() {
@@ -15,17 +16,24 @@ export default function Personas() {
               </CardBody>
             </Card>
           </Tab>
-          <Tab key="form" title="Crear" className="max-w-5xl">
+          <Tab key="form" title="Crear" className="">
             <Card>
               <CardBody>
                 <FormCreatePersona/>
               </CardBody>
             </Card>
           </Tab>
-          <Tab key="inscribit" title="Inscribir" className="max-w-3xl">
+          <Tab key="inscribit" title="Inscribir" className="">
             <Card>
               <CardBody>
                 <FormAsign/>
+              </CardBody>
+            </Card>
+          </Tab>
+          <Tab key="verinscripciones" title="Ver inscripciones" className="">
+            <Card>
+              <CardBody>
+                <VerCursadas/>
               </CardBody>
             </Card>
           </Tab>
